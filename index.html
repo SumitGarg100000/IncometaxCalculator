@@ -1,9 +1,186 @@
+
+  th {
+    background-color: #09D575;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  h2 {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    margin-right:0px;
+    margin-left:0px;
+    text-align: center;
+  }
+  /* Additional styles for total headings */
+  .total-heading {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+  /* Updated font color for subtotal rows */
+  .subtotal-row {
+    color: black;
+    font-weight: bold;
+  }
+  /* Adjust column widths */
+  th:first-child {
+    width: 20%;
+  }
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 12.5%;
+  }
+  th:nth-child(3),
+  td:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 12.5%;
+  }
+  /* Styles for buttons */
+  .container {
+    display: flex;
+   
+            justify-content: flex-end;
+  }
+  .button {
+    padding: 10px 10px;
+    border:none;
+    border-radius: 5px;
+    background-color: #00f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-right:22px;
+    margin-bottom:1px;
+  }
+  
+
+  /* CSS for printing */
+  @media print
+  
+  {
+                /* Hide buttons when printing */
+        .button-container {
+      display:;
+     
+    }
+    
+    
+    
+    
+    th {
+           -webkit-print-color-adjust: exact; /* For WebKit-based browsers */
+                color-adjust: exact; /* For other browsers */
+            }
+    /* Adjustments for better printing */
+    body {
+      background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    }
+    table {
+      page-break-inside: auto; /* Allow tables to break across pages */
+    }
+    th, td {
+      page-break-inside: avoid; /* Avoid*/
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+  }
+ 
+ 
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  }
+</style>
+
+<style>
+        /* Basic styling for the footer section */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        footer {
+            background-color: #333;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .footer-links {
+            margin-top: 10px;
+        }
+        .footer-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+    </style>
+
+
+<script>
+function printPDF() {
+    window.print(); // Prompt user with print dialog
+  }
+  
+  
+  function resetValues() {
+  // Get all input elements within the table
+  let tableInputs = document.querySelectorAll('#incomeTable input[type="number"]');
+  
+  // Loop through each input element and reset its value to empty string
+  tableInputs.forEach(input => {
+    input.value = "";
+  });
+}
+
+
+
+function resetValues() {
+            // Reload the page
+            location.reload();
+        }
+    
+
+
+</script>
+</head>
+<body>
+        
+<!-- Heading -->
+<header>
+        <h1>Incometax Calculator</h1>
+       
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Income Tax Calculator</title>
+<title>Income Calculation</title>
 
 <style>
         /* Basic styling for the header */
@@ -23,6 +200,15 @@
             font-size: 40px;
             margin: 0;
         }
+       
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 15px;
+        }
     </style>
 
 <style>
@@ -41,14 +227,14 @@
   table {
   width: auto; /* Remove fixed width */
   max-width: 100%; /* Set maximum width to 100% */
-  
+  display:flex;
   border-collapse: collapse;
   border: 2px solid #007bff;
   border-radius: 10px;
   overflow: hidden; /* Maintain content visibility within table */
-  margin-top: 5px;
-  margin-left: 30px;
-  margin-right: 20px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
   
  /* margin: 5px auto; /* Add margins for top and bottom, center horizontally */
   background-color: green;
@@ -246,7 +432,6 @@ function resetValues() {
 </script>
 </head>
 <body>
-        
 <!-- Heading -->
 <header>
         <h1>Incometax Calculator</h1>
@@ -264,62 +449,63 @@ function resetValues() {
 
 
 </header>
- <table class="ProfileTable">
-    <!-- Table headers -->
-  
-    <tr>
-  <th>Name</th>
-  <th><input type="text" id="Name" value=""></th>
-  <th>Aadhaar Number</th>
-  <th><input type="number" id="Aadhaar Number" value=""></th>
-</tr>
-<tr>
-  <th>PAN Number</th>
-  <th><input type="text" id="PAN Number" value=""></th>
-  <th>Mobile Number</th>
-  <th><input type="number" id="Mobile Number" value=""></th>
-</tr>
-<tr>
-  <th>Father Name</th>
-  <th><input type="text" id="Father Name" value=""></th>
-  <th>Email ID</th>
-  <th><input type="text" id="Email ID" value=""></th>
-</tr>
-<tr>
-  <th>Age</th>
-  <th><input type="number" id="Age" value=""></th>
-  <th>Bank A/c No.</th>
-  <th><input type="number" id="Bank A/c No." value=""></th>
-</tr>
-<tr>
-  <th>Address</th>
-  <th><input type="text" id="Address" value=""></th>
-  <th>IFSC Code</th>
-  <th><input type="text" id="IFSC Code" value=""></th>
-</tr>
-<tr>
-  <th>Assessment Year</th>
-  <th><input type="number" id="Assessment Year" value=""></th>
-  <th>MIRC Code</th>
-  <th><input type="number" id="MIRC Code" value=""></th>
-</tr>
-<tr>
-  <th>Year End</th>
-  <th><input type="text" id="Year End" value=""></th>
-  <th>Type (Saving/Current)</th>
-  <th><input type="text" id="Type (Saving/Current)" value=""></th>
-</tr>
-</table>
-    
-    
 
-<table class="incomeTable">
+
+<table class="incomeTable" style="overflow:scroll;">
     <!-- Table headers -->
-    <tr>
-        <th>Particulars</th>
-        <th>Amount</th>
-        <th>Old Tax Regime</th>
-        <th>New Tax Regime</th>
+   
+  <tr>
+    <td>Name</td>
+    <td><input type="text" id="Name" value=""></td>
+    <td>Aadhaar Number</td>
+    <td><input type="number" id="Aadhaar Number" value=""></td>
+  </tr>
+  <tr>
+    <td>PAN Number</td>
+    <td><input type="text" id="PAN Number" value=""></td>
+    <td>Mobile Number</td>
+    <td><input type="number" id="Mobile Number" value=""></td>
+  </tr>
+  <tr>
+    <td>Father Name</td>
+    <td><input type="text" id="Father Name" value=""></td>
+    <td>Email ID</td>
+    <td><input type="text" id="Email ID" value=""></td>
+  </tr>
+  <tr>
+    <td>Age</td>
+    <td><input type="number" id="Age" value=""></td>
+    <td>Bank A/c No.</td>
+    <td><input type="number" id="Bank A/c No." value=""></td>
+  </tr>
+  <tr>
+    <td>Address</td>
+    <td><input type="text" id="Address" value=""></td>
+    <td>IFSC Code</td>
+    <td><input type="number" id="IFSC Code" value=""></td>
+  </tr>
+  <tr>
+    <td>Assessment Year</td>
+    <td><input type="number" id="Assessment Year" value=""></td>
+    <td>MIRC Code</td>
+    <td><input type="number" id="MIRC Code" value=""></td>
+  </tr>
+  <tr>
+    <td>Year End</td>
+    <td><input type="text" id="Year End" value=""></td>
+    <td>Type (Saving/Current)</td>
+    <td><input type="text" id="Type (Saving/Current)" value=""></td>
+  </tr>
+
+    
+    
+    
+    
+    <tr style="background-color:green;">
+        <td>Particulars</td>
+        <td>Amount</td>
+        <td>Old Tax Regime</td>
+        <td>New Tax Regime</td>
     </tr>
     <!-- Income under the head "Salaries" -->
    <tr style="background-color:#49A5E3;">
