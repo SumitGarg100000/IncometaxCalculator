@@ -1769,7 +1769,7 @@ let taxbeforerebate = newTaxNormalIncomeTax + SpecialIncomeTax;
      {
          
          
-         if (selectedValue === "Conceptual")
+         if (selectedValue === "Conceptual" && totalIncome<730000)
          {
          rebate = Math.max((taxbeforerebate-LTCG112AIncome*0.1-Lottery*0.3)-(totalIncome-700000),0);
              
@@ -1778,7 +1778,7 @@ let taxbeforerebate = newTaxNormalIncomeTax + SpecialIncomeTax;
          else
          
          {
-             rebate = (totalIncome-700000)*0.1+25000-(totalIncome-700000);
+             rebate = Math.max((totalIncome-700000)*0.1+25000-(totalIncome-700000),0);
              
              
          }
