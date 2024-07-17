@@ -1066,7 +1066,7 @@ if (oldNetHP>=0){
     oldSetoffHPLoss = 0;
 } else
 {
-    oldSetoffHPLoss = Math.min(oldNetHP,200000,Math.max(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));  
+    oldSetoffHPLoss = Math.min(-oldNetHP,200000,Math.max(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));  
 }
         
  
