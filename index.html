@@ -1088,7 +1088,7 @@ let oldSetOffPGBPLoss = 0;
 if (oldnetIncomePGBP>=0){
     oldSetOffPGBPLoss = 0;
 } else if (-oldnetIncomePGBP>(oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources)){
-   oldSetOffPGBPLoss=  (-oldnetIncomePGBP-Math.max((oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0)));
+   oldSetOffPGBPLoss=  (-oldnetIncomePGBP-(oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources));
 } else {
     oldSetOffPGBPLoss = -Math.max(Math.min(-oldnetIncomePGBP,oldNetHP+oldTaxNetIncomeCapitalGain+oldTaxNetIncomeOtherSources),0);
 }
