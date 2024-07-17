@@ -1090,7 +1090,7 @@ if (oldnetIncomePGBP>=0){
 } else if (-oldnetIncomePGBP>(oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources)){
    oldSetOffPGBPLoss=  (-oldnetIncomePGBP-(oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources));
 } else {
-    oldSetOffPGBPLoss = -Math.max(Math.min(-oldnetIncomePGBP,oldNetHP+oldTaxNetIncomeCapitalGain+oldTaxNetIncomeOtherSources),0);
+    oldSetOffPGBPLoss = Math.max(Math.min(-oldnetIncomePGBP,oldNetHP+oldTaxNetIncomeCapitalGain+oldTaxNetIncomeOtherSources),0);
 }
 document.getElementById('oldTaxPGBPLoss').textContent = oldSetOffPGBPLoss.toFixed(2);
 
@@ -1150,7 +1150,7 @@ if (newNetIncomePGBP >= 0) {
 } else if (-newNetIncomePGBP > (newTaxNetSalary + newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources)) {
     newSetOffPGBPLoss = (-newNetIncomePGBP - (newTaxNetSalary + newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources));
 } else {
-    newSetOffPGBPLoss = -Math.max(Math.min(-newNetIncomePGBP, newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources),0);
+    newSetOffPGBPLoss = Math.max(Math.min(-newNetIncomePGBP, newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources),0);
 }
 document.getElementById('newTaxPGBPLoss').textContent = newSetOffPGBPLoss.toFixed(2);
 
