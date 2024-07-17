@@ -576,7 +576,7 @@ function resetValues() {
 
     <!-- Setoff Caryy Forward -->
     <tr style="background-color:#49A5E3;">
-  <td colspan="4" style="text-align: center; color: "><strong>Set off(-)/Carry Forward(+)</strong></td>
+  <td colspan="4" style="text-align: center; color: "><strong>Set off(-) & Carry Forward(+)</strong></td>
     </tr>
     <tr>
         <td>Loss from HP</td>
@@ -602,8 +602,7 @@ function resetValues() {
         <td id="oldTaxLTCGLoss"></td>
         <td id="newTaxLTCGLoss"></td>
     </tr>
-
-
+    
     
     <!-- Gross Total Income -->
     <tr style="background-color:#77D5B6;">
@@ -1065,11 +1064,20 @@ let oldSetOffHPLoss = 0;
 if (oldNetHP>=0){
     oldSetoffHPLoss = 0;
 } else
+if (-oldNetHP>(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources))
 {
-    oldSetoffHPLoss = Math.min(-oldNetHP,200000,Math.max(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));  
+    //Carry forward 
+    oldSetOffHPLoss=(-oldNetHP-Math.max(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));
+} else if (-oldNetHP>200000)
+{    
+    oldSetOffHPLoss = (-oldNetHP-200000);
+} else 
+
+{
+    
+oldSetOffHPLoss = -Math.max(Math.min(-oldNetHP,oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,200000),0);
+   
 }
-        
- 
 
 
 document.getElementById('oldTaxHPLoss').textContent = oldSetOffHPLoss.toFixed(2);
@@ -1079,14 +1087,11 @@ let oldSetOffPGBPLoss = 0;
 
 if (oldnetIncomePGBP>=0){
     oldSetOffPGBPLoss = 0;
-} 
-else 
-{
-   oldSetOffPGBPLoss = Math.min(oldnetIncomePGBP,Math.max(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));    
+} else if (-oldnetIncomePGBP>(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources)){
+   oldSetOffPGBPLoss=  (-oldnetIncomePGBP-(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources));
+} else {
+    oldSetOffPGBPLoss = 0;
 }
-        
-        
-     
 document.getElementById('oldTaxPGBPLoss').textContent = oldSetOffPGBPLoss.toFixed(2);
 
 
@@ -1326,13 +1331,11 @@ function AllIncomes() {
 
      if(STCG111>0 && STCG111A<0 && STCG111 > -STCG111A){
     STCG111=STCG111+STCG111A;
-    STCG111A=0;
 }  else if(STCG111>0 && STCG111A<0 && STCG111< -STCG111A){
     STCG111=0;
     STCG111ALoss=STCG111A+STCG111;
 } else if(STCG111A>0 && STCG111<0 && STCG111A> -STCG111){
     STCG111A=STCG111A+STCG111;
-    STCG111=0;
 }  else if(STCG111A>0 && STCG111<0 && STCG111A< -STCG111){
     STCG111A=0;
     STCG111Loss=STCG111+STCG111A;
@@ -1349,13 +1352,11 @@ function AllIncomes() {
 
 if (LTCG112 > 0 && LTCG112A < 0 && LTCG112 > -LTCG112A) {
     LTCG112Gain = LTCG112 + LTCG112A;
-    LTCG112A=0;
 } else if (LTCG112 > 0 && LTCG112A < 0 && LTCG112 < -LTCG112A) {
     LTCG112Gain = 0;
     LTCG112ALoss = LTCG112A + LTCG112;
 } else if (LTCG112A > 0 && LTCG112 < 0 && LTCG112A > -LTCG112) {
     LTCG112AGain = LTCG112A + LTCG112;
-    LTCG112=0;
 } else if (LTCG112A > 0 && LTCG112 < 0 && LTCG112A < -LTCG112) {
     LTCG112AGain = 0;
     LTCG112Loss = LTCG112 + LTCG112A;
