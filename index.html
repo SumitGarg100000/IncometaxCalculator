@@ -1087,8 +1087,8 @@ let oldSetOffPGBPLoss = 0;
 
 if (oldnetIncomePGBP>=0){
     oldSetOffPGBPLoss = 0;
-} else if (-oldnetIncomePGBP>(oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources)){
-   oldSetOffPGBPLoss=  (-oldnetIncomePGBP-(oldTaxNetSalary + oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources));
+} else if (-oldnetIncomePGBP>(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources)){
+   oldSetOffPGBPLoss=  (-oldnetIncomePGBP-(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources));
 } else {
     oldSetOffPGBPLoss = 0;
 }
@@ -1147,8 +1147,8 @@ let newSetOffPGBPLoss = 0;
 
 if (newNetIncomePGBP >= 0) {
     newSetOffPGBPLoss = 0;
-} else if (-newNetIncomePGBP > (newTaxNetSalary + newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources)) {
-    newSetOffPGBPLoss = (-newNetIncomePGBP - (newTaxNetSalary + newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources));
+} else if (-newNetIncomePGBP > (newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources)) {
+    newSetOffPGBPLoss = (-newNetIncomePGBP - (newNetHP + newTaxNetIncomeCapitalGain + newTaxNetIncomeOtherSources));
 } else {
     newSetOffPGBPLoss = 0;
 }
