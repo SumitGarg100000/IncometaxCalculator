@@ -576,7 +576,7 @@ function resetValues() {
 
     <!-- Setoff Caryy Forward -->
     <tr style="background-color:#49A5E3;">
-  <td colspan="4" style="text-align: center; color: "><strong>Set off</strong></td>
+  <td colspan="4" style="text-align: center; color: "><strong>Set off(-)/Carry Forward(+)</strong></td>
     </tr>
     <tr>
         <td>Loss from HP</td>
@@ -603,35 +603,7 @@ function resetValues() {
         <td id="newTaxLTCGLoss"></td>
     </tr>
 
- <!-- Caryy Forward -->
-    <tr style="background-color:#49A5E3;">
-  <td colspan="4" style="text-align: center; color: "><strong>Carry Forward</strong></td>
-    </tr>
-    <tr>
-        <td>Loss from HP</td>
-        <td><input type="number" id="CarryHPLoss" value=""></td>
-        <td id="oldTaxCarryHPLoss"></td>
-        <td id="newTaxCarryHPLoss"></td>
-    </tr>
-    <tr>
-        <td>Loss from PGBP</td>
-        <td><input type="number" id="CarryPGBPLoss" value=""></td>
-        <td id="oldTaxCarryPGBPLoss"></td>
-        <td id="newTaxCarryPGBPLoss"></td>
-    </tr>
-    <tr>
-        <td>Loss from STCG</td>
-        <td><input type="number" id="CarrySTCGLoss" value=""></td>
-        <td id="oldTaxCarrySTCGLoss"></td>
-        <td id="newTaxCarrySTCGLoss"></td>
-    </tr>
-    <tr>
-        <td>Loss from LTCG</td>
-        <td><input type="number" id="CarryLTCGLoss" value=""></td>
-        <td id="oldTaxCarryLTCGLoss"></td>
-        <td id="newTaxCarryLTCGLoss"></td>
-    </tr>
-        
+
     
     <!-- Gross Total Income -->
     <tr style="background-color:#77D5B6;">
@@ -1093,20 +1065,11 @@ let oldSetOffHPLoss = 0;
 if (oldNetHP>=0){
     oldSetoffHPLoss = 0;
 } else
-if (-oldNetHP>(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources))
 {
-    //Carry forward 
-    oldSetOffHPLoss=(-oldNetHP-Math.max(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));
-} else if (-oldNetHP>200000)
-{    
-    oldSetOffHPLoss = (-oldNetHP-200000);
-} else 
-
-{
-    
-oldSetOffHPLoss = -Math.max(Math.min(-oldNetHP,oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,200000),0);
-   
+    oldSetoffHPLoss = Math.min(oldNetHP,200000,Math.max(oldTaxNetSalary + oldnetIncomePGBP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));  
 }
+        
+ 
 
 
 document.getElementById('oldTaxHPLoss').textContent = oldSetOffHPLoss.toFixed(2);
@@ -1116,11 +1079,14 @@ let oldSetOffPGBPLoss = 0;
 
 if (oldnetIncomePGBP>=0){
     oldSetOffPGBPLoss = 0;
-} else if (-oldnetIncomePGBP>(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources)){
-   oldSetOffPGBPLoss=  (-oldnetIncomePGBP-(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources));
-} else {
-    oldSetOffPGBPLoss = 0;
+} 
+else 
+{
+   oldSetOffPGBPLoss = Math.min(oldnetIncomePGBP,Math.max(oldNetHP + oldTaxNetIncomeCapitalGain + oldTaxNetIncomeOtherSources,0));    
 }
+        
+        
+     
 document.getElementById('oldTaxPGBPLoss').textContent = oldSetOffPGBPLoss.toFixed(2);
 
 
