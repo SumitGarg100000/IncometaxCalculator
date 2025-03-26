@@ -1135,10 +1135,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const scriptUrl1 = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/script.js';
-    loadExternalScript(scriptUrl1);
+    const scriptUrl2 = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/blank.js';
+    loadExternalScript(scriptUrl1).then(() => loadExternalScript(scriptUrl2));
 });
-</script>
 
+</script>
 
 
 
