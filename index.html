@@ -1115,31 +1115,34 @@
 
 
 
+
+
 <script>
-    function loadExternalScript(url) {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error(`Failed to fetch script from ${url}`);
-            return response.text();
-        })
-        .then(scriptText => {
-            const scriptElement = document.createElement('script');
-            scriptElement.text = scriptText;
-            document.body.appendChild(scriptElement);
-        })
-        .catch(error => {
-            document.querySelector('.container').innerHTML = '<h1>Failed to load tool! Contact Sumit Garg at 9716804520.</h1>';
-            console.error('Error:', error);
-        });
-}
+        const scriptUrl = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/script.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const scriptUrl1 = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/script.js';
-    const scriptUrl2 = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/blank.js';
-    loadExternalScript(scriptUrl1).then(() => loadExternalScript(scriptUrl2));
-});
+        function loadExternalScript() {
+            fetch(scriptUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch script');
+                    return response.text();
+                })
+                .then(scriptText => {
+                    const scriptElement = document.createElement('script');
+                    scriptElement.text = scriptText;
+                    document.body.appendChild(scriptElement);
+                })
+                .catch(error => {
+                    document.querySelector('.container').innerHTML = '<h1>Failed to load tool! Contact Sumit Garg at 9716804520.</h1>';
+                    console.error('Error:', error);
+                });
+        }
 
-</script>
+        document.addEventListener('DOMContentLoaded', loadExternalScript);
+    </script>
+
+
+    
+
 
 
 
