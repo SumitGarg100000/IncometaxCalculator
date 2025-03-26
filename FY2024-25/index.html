@@ -1117,26 +1117,38 @@
 
 <script>
     function loadExternalScript(url) {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error(`Failed to fetch script from ${url}`);
-            return response.text();
-        })
-        .then(scriptText => {
-            const scriptElement = document.createElement('script');
-            scriptElement.text = scriptText;
-            document.body.appendChild(scriptElement);
-        })
-        .catch(error => {
-            document.querySelector('.container').innerHTML = '<h1>Failed to load tool! Contact Sumit Garg at 9716804520.</h1>';
-            console.error('Error:', error);
-        });
-}
+        return fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(scriptText => {
+                const scriptElement = document.createElement('script');
+                scriptElement.text = scriptText;
+                scriptElement.onerror = () => {
+                    throw new Error('Script execution failed');
+                };
+                document.body.appendChild(scriptElement);
+                return 'Script loaded successfully';
+            })
+            .catch(error => {
+                const container = document.querySelector('.container');
+                if (container) {
+                    container.innerHTML = '<h1>Failed to load tool! Contact Sumit Garg at 9716804520.</h1>';
+                }
+                console.error('Error loading script:', error);
+                throw error;
+            });
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const scriptUrl1 = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/FY2024-25/script.js';
-    loadExternalScript(scriptUrl1);
-});
+    document.addEventListener('DOMContentLoaded', () => {
+        const scriptUrl = 'https://raw.githubusercontent.com/SumitGarg100000/IncometaxCalculator/refs/heads/main/FY2024-25/script.js';
+        loadExternalScript(scriptUrl)
+            .then(success => console.log(success))
+            .catch(error => console.log('Failed to initialize:', error));
+    });
 </script>
 
 
