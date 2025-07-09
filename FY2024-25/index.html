@@ -703,15 +703,25 @@ h2 {
       <h1>Income Tax Calculator</h1>
       <h2>Disclaimer - This calculator is made after incorporating all the relevant provisions of Income Tax act applicable for FY 2024-25(AY 2025-26)</h2>
       <!-- Button container -->
-      <div class="container">
-   <button class="button" onclick="FY_25_26()">FY 2025-26</button>
+           <div class="container">
+   <button class="button" onclick="FY_25_26()">
+     <i class="fas fa-calendar-alt"></i> FY 2025-26
+   </button>
    
-  <button class="button" onclick="resetValues()">Reset</button>
-  <button class="button" onclick="printPDF()">Print PDF</button>
-  <button class="button" onclick="generateComputationPDF()">Computation PDF</button>
-  <button class="button" onclick="exportToJSON()">Export JSON</button>
+
+  <button class="button" onclick="printPDF()">
+    <i class="fas fa-print"></i> Print PDF
+  </button>
+  <button class="button" onclick="generateComputationPDF()">
+    <i class="fas fa-file-pdf"></i> Computation PDF
+  </button>
+  <button class="button" onclick="exportToJSON()">
+    <i class="fas fa-download"></i> Export JSON
+  </button>
 <input type="file" id="importFile" style="display: none;" accept="application/json,.json" onchange="importFromJSON(event)">
-<button class="button" onclick="document.getElementById('importFile').click()">Import JSON</button>
+<button class="button" onclick="document.getElementById('importFile').click()">
+  <i class="fas fa-upload"></i> Import JSON
+</button>
 </div>
     </header>
     <table class="incomeTable" style="overflow:scroll;">
